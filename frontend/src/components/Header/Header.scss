@@ -1,0 +1,29 @@
+@use '../../styles/_variables.scss' as vars;
+
+.header {
+    &__container {
+        @include vars.flex-row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        height: fit-content;
+        padding: vars.$space-25;
+        gap: vars.$space-25;
+        box-shadow: vars.$box-shadow-2;
+    }
+
+    &__username {
+        font-size: vars.$font-size-18;
+        
+        span {
+            font-size: vars.$font-size-18;
+            color: vars.$color-primary;
+        }
+    }
+
+    &__logout-button {
+        text-decoration: underline;
+        background-color: transparent;
+        pointer-events: all;
+    }
+}

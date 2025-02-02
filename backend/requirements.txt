@@ -8,4 +8,4 @@ gunicorn
 python-jose
 python-multipart
 uvicorn
-bcrypt
+bcrypt==3.2.0

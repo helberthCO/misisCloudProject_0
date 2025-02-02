@@ -84,7 +84,11 @@ export default {
 				if (response.ok) {
 					this.loginMessage = result.message
 					this.loginSuccess = true
-					localStorage.setItem('token', result.access_token)
+					console.log(response);
+					
+					sessionStorage.setItem('first_name', result.name)
+					sessionStorage.setItem('last_name', result.last_name)
+					sessionStorage.setItem('token', result.access_token)
 					this.$router.push('/')
 				} else if (response.status === 404) {
 					this.userNotFoundMessage = result.detail

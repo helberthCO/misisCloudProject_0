@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="app">
+  <body id="app" class="app">
     <RouterView />
-  </div>
+  </body>
 </template>
 
 <script>
