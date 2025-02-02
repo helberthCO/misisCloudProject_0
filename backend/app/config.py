@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DATABASE_URI = os.getenv("DATABASE_URI", "postgresql://helberth:helberthCO9189@db/taskManagerDB")
 SECRET_KEY = os.getenv("SECRET_KEY", "helb_key_task_manager")
