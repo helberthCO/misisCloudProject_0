@@ -1,0 +1,44 @@
+@use '../../styles/_variables.scss' as vars;
+
+.login {
+    &__container {
+        @include vars.flex-row;
+        margin: auto;
+        width: calc(100% - 3rem);
+        max-width: 55rem;
+        box-shadow: vars.$box-shadow-2;
+    }
+
+    &__sign-in,
+    &__register {
+        flex: 50%;
+        padding: 4rem 3rem;
+        @include vars.flex-column;
+    }
+
+    &__sign-in {
+        gap: vars.$space-25;
+
+        .error {
+            color: vars.$color-red;
+            font-size: vars.$font-size-14;
+            font-weight: vars.$font-weight-bold;
+        }
+    }
+
+    &__register {
+        background-color: vars.$color-primary;
+        color: vars.$color-white;
+        @include vars.flex-column;
+        @include vars.flex-center;
+
+        .title {
+            margin-bottom: vars.$space-20;
+        }
+
+        .subtitle {
+            margin-bottom: vars.$space-15;
+            font-size: vars.$font-size-16;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@use '../../styles/_variables.scss' as vars;
+
+.home {
+    &__logged-out {
+        @include vars.flex-column;
+        @include vars.flex-center;
+        gap: vars.$space-15;
+        margin: auto;
+        width: calc(100% - 3rem);
+        padding: vars.$space-50;
+        max-width: 20rem;
+        box-shadow: vars.$box-shadow-2;
+
+        &__subtitle {
+            font-size: vars.$font-size-20;
+        }
+
+        &__link {
+            font-size: vars.$font-size-14;
+            padding: vars.$space-10 vars.$space-20;
+            margin-top: vars.$space-5;
+            border-radius: vars.$space-25;
+            border: 1px solid vars.$color-black;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+            &:hover {
+                background-color: vars.$color-primary;
+                border-color: vars.$color-primary;
+                color: vars.$color-white;
+            }
+        }
+    }
+}

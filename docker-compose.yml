@@ -1,0 +1,24 @@
+services:
+  web:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URI=postgresql://helberth:helberthCO9189@db/taskManagerDB
+      - SECRET_KEY=helb_key_task_manager
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: helberth
+      POSTGRES_PASSWORD: helberthCO9189
+      POSTGRES_DB: taskManagerDB
+    ports:
+      - "5432:5432"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    environment:
+      - VUE_APP_API_URL=http://localhost:8000

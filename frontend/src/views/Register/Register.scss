@@ -1,0 +1,29 @@
+@use '../../styles/_variables.scss' as vars;
+
+.register {
+    &__container {
+        @include vars.flex-column;
+        padding: 4rem 3rem;
+        margin: auto;
+        width: calc(100% - 3rem);
+        max-width: 30rem;
+        box-shadow: vars.$box-shadow-2;
+        gap: vars.$space-30;
+    }
+
+    &__form {
+        @include vars.flex-column;
+        gap: vars.$space-25;
+    }
+
+    &__login {
+        @include vars.flex-column;
+        @include vars.flex-center;
+    }
+
+    &__success {
+        @include vars.flex-column;
+        @include vars.flex-center;
+        gap: vars.$space-25;
+    }
+}

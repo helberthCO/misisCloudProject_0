@@ -1,0 +1,135 @@
+// Colors
+$color-primary: #369B72;
+$color-secondary: #356D5F;
+$color-black: #333F4C;
+$color-gray: #999FA6;
+$color-white: #FFFFFF;
+$color-red: #F51720;
+
+// Typography
+$font-size-12: 0.75rem; // 12px
+$font-size-14: 0.875rem; // 14px
+$font-size-16: 1rem;     // 16px
+$font-size-18: 1.125rem; // 18px
+$font-size-20: 1.25rem;  // 20px
+$font-size-22: 1.375rem; // 22px
+$font-size-24: 1.5rem;   // 24px
+$font-size-26: 1.625rem; // 26px
+$font-size-28: 1.75rem;  // 28px
+$font-size-30: 1.875rem; // 30px
+$font-size-32: 2rem;     // 32px
+
+$font-size-h1: $font-size-32;
+$font-size-h2: $font-size-28;
+$font-size-h3: $font-size-24;
+$font-size-h4: $font-size-20;
+$font-size-h5: $font-size-16;
+$font-size-h6: $font-size-14;
+
+// Font weights
+$font-weight-thin: 100;
+$font-weight-extra-light: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+$font-weight-black: 900;
+
+// Font styles
+$font-style-normal: normal;
+$font-style-italic: italic;
+
+
+// Flex mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin flex-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+// Shadows
+$box-shadow-1: rgba($color-black, 0.2) 0px 8px 24px;
+$box-shadow-2: rgba($color-black, 0.2) 0px 7px 29px 0px;;
+
+// Spacing for margin and padding
+$space-5: 0.3125rem;   // 5px
+$space-10: 0.625rem;   // 10px
+$space-15: 0.9375rem;  // 15px
+$space-20: 1.25rem;    // 20px
+$space-25: 1.5625rem;  // 25px
+$space-30: 1.875rem;   // 30px
+$space-35: 2.1875rem;  // 35px
+$space-40: 2.5rem;     // 40px
+$space-45: 2.8125rem;  // 45px
+$space-50: 3.125rem;   // 50px
+
+// Generate color classes
+@mixin generate-color-classes($colors) {
+    @each $name, $color in $colors {
+        .text--#{$name} {
+            color: $color;
+        }
+        .bg--#{$name} {
+            background-color: $color;
+        }
+        .border--#{$name} {
+            border-color: $color;
+        }
+    }
+}
+
+$colors: (
+    'primary': $color-primary,
+    'secondary': $color-secondary,
+    'black': $color-black,
+    'gray': $color-gray,
+    'white': $color-white,
+    'red': $color-red
+);
+
+@include generate-color-classes($colors);
+
+// Generate font weight classes
+@mixin generate-font-weight-classes($weights) {
+    @each $name, $weight in $weights {
+        .font--#{$name} {
+            font-weight: $weight;
+        }
+    }
+}
+
+$weights: (
+    'thin': 100,
+    'extra-light': 200,
+    'light': 300,
+    'regular': 400,
+    'medium': 500,
+    'semi-bold': 600,
+    'bold': 700,
+    'extra-bold': 800,
+    'black': 900
+);
+
+@include generate-font-weight-classes($weights);

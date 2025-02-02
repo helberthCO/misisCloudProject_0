@@ -1,0 +1,32 @@
+@use '../../styles/_variables.scss' as vars;
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        padding: vars.$space-15 vars.$space-20;
+        background-color: rgba(vars.$color-gray, 0.125);
+        border-radius: vars.$space-25;
+        color: vars.$color-black;
+
+        &, &::placeholder {
+            font-weight: vars.$font-weight-regular;
+            font-size: vars.$font-size-14;
+        }
+
+        &::placeholder { color: rgba(vars.$color-gray, 0.5); }
+    }
+    
+    label {
+        margin-bottom: vars.$space-5;
+        font-weight: vars.$font-weight-bold;
+        font-size: vars.$font-size-12;
+        text-transform: uppercase;
+    }
+
+    &.error {
+        input { border: 1px solid vars.$color-red; }
+        label { color: vars.$color-red; }
+    }
+}
