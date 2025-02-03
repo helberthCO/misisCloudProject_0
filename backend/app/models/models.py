@@ -1,11 +1,8 @@
-import bcrypt
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
-from .database import Base
+from ..database import Base
 
-Base = declarative_base()
-
+# SQLAlchemy model for the User table
 class User(Base):
     __tablename__ = "users"
 
@@ -15,16 +12,19 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
 
+# Pydantic model for creating a new user
 class UserCreate(BaseModel):
     name: str
     last_name: str
     username: str
     password: str
 
+# Pydantic model for user login
 class UserLogin(BaseModel):
     username: str
     password: str
 
+# Pydantic model for returning user data
 class UserSchema(BaseModel):
     id: int
     name: str

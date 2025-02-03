@@ -1,12 +1,4 @@
 services:
-  web:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URI=postgresql://helberth:helberthCO9189@db/taskManagerDB
-      - SECRET_KEY=helb_key_task_manager
-
   db:
     image: postgres:13
     environment:
@@ -15,6 +7,21 @@ services:
       POSTGRES_DB: taskManagerDB
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: ./backend
+    command: gunicorn -c gunicorn.conf.py app.main:app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URI=postgresql://helberth:helberthCO9189@db:5432/taskManagerDB
+      - SECRET_KEY=helb_key_task_manager
 
   frontend:
     build: ./frontend
@@ -22,3 +29,6 @@ services:
       - "8080:80"
     environment:
       - VUE_APP_API_URL=http://localhost:8000
+
+volumes:
+  postgres_data:

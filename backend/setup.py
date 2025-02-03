@@ -6,14 +6,14 @@ setup(
     packages=find_packages(),
     install_requires=[
         "fastapi",
-        "fastapi-cors",
         "sqlalchemy",
-        "psycopg2",
+        "psycopg2-binary",
         "pyjwt",
-        "passlib",
+        "passlib[bcrypt]",
         "gunicorn",
         "python-jose",
         "python-multipart",
         "uvicorn",
+        "python-dotenv",
     ],
 )

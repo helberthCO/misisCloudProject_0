@@ -1,16 +1,17 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from datetime import timedelta
-from .database import SessionLocal, engine
-from .models import Base, UserCreate, UserLogin
-from .crud import get_user_by_username, create_user
-from .auth import verify_password, create_access_token
+from ..database import SessionLocal, engine, Base
+from ..models import UserCreate, UserLogin
+from ..crud import get_user_by_username, create_user
+from ..auth import verify_password, create_access_token
 
-app = FastAPI()
+router = APIRouter()
 
-app.add_middleware(
+# Add CORS middleware
+router.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
@@ -18,10 +19,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Create database tables
 Base.metadata.create_all(bind=engine)
 
+# OAuth2 scheme for token authentication
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+# Dependency to get the database session
 def get_db():
     db = SessionLocal()
     try:
@@ -29,7 +33,7 @@ def get_db():
     finally:
         db.close()
 
-@app.post("/register")
+@router.post("/register")
 async def register_user(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = get_user_by_username(db, user.username)
     if existing_user:
@@ -40,7 +44,7 @@ async def register_user(user: UserCreate, db: Session = Depends(get_db)):
     create_user(db, user.name, user.last_name, user.username, user.password)
     return {"message": "Usuario registrado exitosamente"}
 
-@app.post("/login")
+@router.post("/login")
 async def login_user(user: UserLogin, db: Session = Depends(get_db)):
     existing_user = get_user_by_username(db, user.username)
     if not existing_user:
